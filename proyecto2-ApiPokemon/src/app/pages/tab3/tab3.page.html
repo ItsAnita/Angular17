@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tarjetas favoritas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-label>Favs de Anita</ion-label>
+  <ion-grid >
+    <ion-row>
+      <ion-col size-xs="12" size-md="4" size-lg="3"  *ngFor="let c of localFavs">
+        <app-card [card]="c"></app-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

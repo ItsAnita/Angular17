@@ -1,0 +1,43 @@
+<ion-card >
+  <ion-grid>
+    <ion-row>
+      <ion-col size="10">
+        <ion-text class="ion-text-start">
+          <h2>{{card.name}}</h2>
+        </ion-text>
+      </ion-col>
+      <ion-col size="2" class="ion-align-self-center" >
+        <ion-button fill="clear" (click)="presentAsc(card)">
+        <ion-icon slot="icon-only"  color="medium" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-img (click)="verDetalles(card.id)" class="puntero" [src]="card.images.small"></ion-img>
+ <!-- <ion-img (click)="presentAsc(card)"  class="puntero" [src]="card.images.small"></ion-img> -->
+  <ion-card-content>
+    <ion-list>
+      <ion-item lines>
+        <ion-icon name="folder-open-outline" slot="start"></ion-icon>
+        <ion-label>Serie: {{card.set.series}}</ion-label>
+      </ion-item>
+      <ion-item lines>
+        <ion-icon name="color-palette-outline" slot="start"></ion-icon>
+        <ion-label>Artista: {{card.artist}}</ion-label>
+      </ion-item>
+      <ion-item lines>
+        <ion-icon name="color-wand-outline" slot="start"></ion-icon>
+        <ion-label>Types: {{card.types}}</ion-label>
+      </ion-item>
+      <ion-item lines>
+        <ion-icon name="flower-outline" slot="start"></ion-icon>
+        <ion-label>Subtipo: {{card.subtypes}}</ion-label>
+      </ion-item>
+      <ion-item lines>
+        <ion-icon name="flash" slot="start"></ion-icon>
+        <ion-label>Rareza: {{card.rarity}}</ion-label>
+      </ion-item>
+      
+    </ion-list>
+  </ion-card-content>
+</ion-card>

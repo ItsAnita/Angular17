@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tarjetas por tipo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-segment scrollable color="primary" (ionChange)="segmentChanged($event)" [value]="typeSelected">
+    <ion-segment-button *ngFor="let tipo of tipos" [value]="tipo" >
+      <ion-label class="ion-text-capitalize">{{tipo}}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-grid >
+    <ion-row>
+      <ion-col size-xs="12" size-md="4" size-lg="3"  *ngFor="let c of cards">
+        <app-card [card]="c"></app-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+ 
+</ion-content>
