@@ -1,0 +1,81 @@
+
+
+<form  [formGroup]="examForm" (ngSubmit)="onSubmit()" class="card">
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-1/3">
+      <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+       Pregunta
+      </label>
+    </div>
+    <div class="md:w-2/3">
+      <input [formControl]="question" [class.border-red-500]="validateCreator(question)" type="text" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="name">
+    </div>
+    <div>
+      @if(validateCreator(question)){
+      <p class="mt-1 mb-0 text-xs text-red-600 dark:text-red-500">
+        {{ getFieldErrors(question) }}
+      </p>
+      }
+    </div>
+  </div>
+
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-1/3">
+      <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="">
+        Respuesta
+      </label>
+    </div>
+    <div class="md:w-2/3">
+      <input [formControl]="answer" [class.border-red-500]="validateCreator(answer)"class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-password" type="text" >
+    </div>
+    <div>
+      @if(validateCreator(answer)){
+      <p class="mt-1 mb-0 text-xs text-red-600 dark:text-red-500">
+        {{ getFieldErrors(answer) }}
+      </p>
+      }
+    </div>
+  </div>
+
+  <div class="md:flex md:items-center">
+    <div class="md:w-1/3"></div>
+    <div class="md:w-2/3">
+      <button (click)="addQuestion()" type="button" class="shadow bg-green-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
+        Agregar pregunta
+      </button>
+
+    </div>
+  </div>
+  <br>
+
+
+    <h1 class="font-bold text-center">Lista de Preguntas y Respuestas</h1>
+    <hr>
+    <div class="mt-5" formArrayName="examQuestions">
+      @for (pregunta of this.examQuestions.controls; track pregunta; let i = $index) {
+        <div class="grid grid-cols-12 gap-4 mt-4">
+          <!-- Input -->
+          <div class="col-span-11">
+
+            <label class="text-base font-medium">{{ i+1 }}.- {{ pregunta.value.pregunta }}</label>
+            <textarea type="text" [formArrayName]="i" rows="2"
+              class="w-full px-3 py-2 mt-2 text-sm placeholder-gray-500 border border-gray-400 rounded-lg focus:outline-none focus:border-blue-400"
+              placeholder="">{{ pregunta.value.respuesta }}</textarea>
+              <button type="button" (click)="onDelete(i)" class="w-1/5 mt-3 bg-red-200 rounded-md shadow-md p-2 hover:bg-red-400">Eliminar</button>
+
+            @if(invalidArrayControl(examQuestions, i)){
+              <div class="col-span-12">
+                <p class="mt-1 mb-0 text-xs text-red-600 dark:text-red-500"><span class="font-medium">*</span> Este campo es
+                  obligatorio</p>
+              </div>
+            }
+          </div>
+        </div>
+      }  @empty {
+        <div class="py-3 mt-8 rounded-lg bg-stone-100">
+
+          <h6 class="text-base font-medium tracking-tight text-center text-purple-600 dark:text-white">No hay preguntas</h6>
+        </div>
+      }
+    </div>
+</form>

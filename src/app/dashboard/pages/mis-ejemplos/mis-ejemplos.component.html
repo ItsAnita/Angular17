@@ -1,0 +1,53 @@
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="bg-blue-200 rounded shadow p-10">
+        <h1 class="text-2xl font-mono mb-3">If</h1>
+        <button  (click)="cambiarEstado()" clas="font-mono" class="p-2 bg-purple-400 hover:bg-pink-400 rounded">
+            Cambiar estado de la tarea
+        </button>
+        @if (verEstado){
+            <h4 class=" text-xl mt-2 font-mono medium">
+                Pendiente
+            </h4>
+        }
+        @else{
+        <h4 class="text-xl mt-2 font-mono medium">
+            Hecho
+        </h4>
+    }
+    </div>
+    <div class="bg-yellow-100 rounded shadow p-10">
+        <h2 class="text-2xl font-mono mb-3">Switch</h2>
+        <h1  class="mt-3 font-mono">Calificacion del Album: {{valoracion}}</h1>
+        @switch (valoracion) {
+            @case (10) {
+                <h5 class="font-mono mt-2 text-lg text-green-700">Es Arte, denle un Grammy</h5>
+            }
+            @case (9) {
+                <h5 class="font-mono mt-2 text-lg text-pink-700">Tiene algunas canciones muy buenas</h5>
+            }
+            @case (8) {
+                <h5 class="font-mono mt-2 text-lg text-purple-900">Canciones buenas</h5>
+            }
+            @case (7) {
+                <h5 class="font-mono mt-2 text-lg text-green-400">Regular</h5>
+            }
+            @default {
+                <h5 class="font-mono mt-2 text-lg text-blue-900">Esperaba algo mejor</h5>
+            }
+        } 
+    </div>
+    <div class="bg-orange-200 rounded shadow p-10">
+        <h2 class="text-2xl font-mono mb-3">For con first, last...</h2>
+        @for(cancion of canciones;track cancion; let i=$index, first=$first, last=$last, odd=$odd, even=$even){  
+            <li class="font-mono" [class]=" {'bg-green-300':first, 'bg-purple-300':last, 'bg-pink-300':odd && !first && !last,'bg-blue-300':even && !first && !last,}">{{i+1}} {{cancion}} </li>
+        }
+    </div>
+    <div class="bg-green-200 rounded shadow p-10">
+        <h2 class="text-2xl font-mono mb-3">For con -empty</h2>
+        @for(serie of series;track $index){  
+            {{serie}}
+        } @empty {
+            <h2 class="font-mono">Aun no ha empezado a ver una serie</h2>
+        }
+    </div>
+</section>

@@ -1,0 +1,18 @@
+
+<div class="max-w-sm p-6 bg-pink-300 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <a href="#">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Contador Normal:{{contadorNormal}}</h5>
+  </a>
+</div>
+<br>
+<app-card-button [contadorN]="contadorNormal"></app-card-button>
+<br>
+
+<div class="max-w-sm p-6 bg-blue-300 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <a href="#">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Contador con signal: {{counterSignal()}}</h5>
+  </a>
+</div>
+<br>
+<app-card2-button [mySignal]="counterSignal"></app-card2-button>
+ 

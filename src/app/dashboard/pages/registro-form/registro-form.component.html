@@ -1,0 +1,124 @@
+<section class="bg-gray-50 dark:bg-gray-900">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+
+      </a>
+      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                  Registrate
+              </h1>
+              <form [formGroup]="formResgister" (ngSubmit)="saveRegister()" class="space-y-4 md:space-y-6" action="#">
+                  <div>
+                      <label for="fullname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre completo</label>
+
+                      <input type="text" formControlName="fullname" id="fullname" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ana" required="">
+                     <!-- @if(formResgister.controls['fullname'].errors?.['pattern']){
+                      <small class="p-1 text-red-500">Ingrese nombre y apellido</small>
+                      }-->
+                      @if(validaFullname('fullname')){
+                        <small class="p-1 text-red-500">Ingrese un nombre y un apellido</small>
+                      }
+                      @else {
+                        @if(validaControl('fullname')){
+                          <small class="p-1 text-red-500">Campo requerido</small>
+                        }
+                      }
+                    </div>
+                  <div>
+                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                    <input type="text" formControlName="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Anita" required="">
+                    <!--@if(formResgister.controls['username'].errors?.['mierror']){
+                      <small class="p-1 text-red-500">Este nombre ya esta en uso</small>
+                  }-->
+                  @if(validaUsername('username')){
+                    <small class="p-1 text-red-500">Este nombre ya esta en uso</small>
+                  }@else {
+                    @if(validaControl('username')){
+                      <small class="p-1 text-red-500">Campo requerido</small>
+                    }
+                  }
+                  </div>
+                  <div>
+                      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                      <input type="email" formControlName="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@gmail.com" required="">
+                      @if(validaEmail()){
+                        <small class="p-1 text-red-500">Correo invalido</small>
+                    }@else {
+                      @if(validaControl('email')){
+                        <small class="p-1 text-red-500">Campo requerido</small>
+                      }
+                    }
+                    </div>
+                  <div>
+                      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
+                      <input type="password" formControlName="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+
+                         @if(validaControl('password')){
+                            <small class="p-1 text-red-500">Este campo es requerido</small>
+                        }
+                    </div>
+                  <div>
+                      <label for="confirmPass" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirmar ontraseña</label>
+                      <input type="confirmPass"  formControlName="confirmPass" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                    @if(validaPassword()){
+                      <small class="p-1 text-red-500">La contraseña no coincide</small>
+                    }@else {
+                     @if(validaControl('confirmPass')){
+                      <small class="p-1 text-red-500">Este campo es requerido</small>
+                     }
+                    }
+                    </div>
+                  <div>
+                      <label for="matricula" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingresa tu matricula</label>
+                      <input type="text"  formControlName="matricula"  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+
+                      @if(validaControl('matricula')){
+                        <small class="p-1 text-red-500">Campo requerido</small>
+                      } @else { @if(validaMatricula()){
+                        <small class="p-1 text-red-500">Esta matricula ya esta registrada</small>
+                      }
+                      }
+                    </div>
+                  <div >
+                    <button
+                    type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+                    focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600
+                     dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                      Enviar
+                    </button>
+                  </div>
+
+              </form>
+
+
+          </div>
+      </div>
+  </div>
+</section>
+<section class="bg-gray-50 dark:bg-gray-900">
+  <div class="bg-slate-300 rounded-lg mt-4 w-full p-3">
+    <h5>Estado del formulario</h5>
+    <hr class="text-gray-800">
+    <h6>Estatus valido? {{formResgister.valid}}</h6>
+    <br>
+
+    <h6>fullname</h6>
+    <pre>{{formResgister.controls['fullname'].errors | json}}</pre>
+    <h6>username</h6>
+    <pre>{{formResgister.controls['username'].errors | json}}</pre>
+    <h6>Email</h6>
+    <pre>{{formResgister.controls['email'].errors | json}}</pre> <!--el pre formatea el json, lo agrega bonito -->
+    <h6>Password</h6>
+    <pre>{{formResgister.controls['password'].errors|json}}</pre>
+    <h6>Confirmar password</h6>
+    <pre>{{formResgister.controls['confirmPass'].errors |json}}</pre>
+    <h6>Valida matricula</h6>
+    <pre>{{formResgister.controls['matricula'].errors |json}}</pre>
+
+
+    <pre>{{formResgister.value | json}}</pre>
+
+  </div>
+
+</section>

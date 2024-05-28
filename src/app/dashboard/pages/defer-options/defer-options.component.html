@@ -1,0 +1,52 @@
+<section>
+    <h1 class="text-xl">Interaccion</h1>
+    <hr>
+    @defer (on interaction) {
+        <app-fast clase="bg-purple-300 h-30">
+            <span> On interaction</span>
+        </app-fast>}@placeholder {
+            <div class="w-full h-30 bg-green-300">Da click aqui</div>
+        }
+</section>
+<section>
+    <h1 class="text-xl">Interaction</h1>
+    <hr>
+    <button #btnInteraction class="bg-green-300 p-2 hover:bg-green-600 roundend text-white">Click aqui</button>
+    @defer (on interaction (btnInteraction)) {
+        <app-fast clase="bg-red-300 h-30">
+            <span> On interaction</span>
+        </app-fast>}@placeholder {
+            <div class="w-full h-30 bg-yellow-300">Da click aqui</div>
+        }
+</section>
+<section>
+    <h1 class="text-xl">Interaction Hover</h1>
+    <hr>
+    @defer (on hover) {
+        <app-fast clase="bg-orange-300 h-30">
+            <span> On hover</span>
+        </app-fast>}
+    @placeholder {
+            <div class="w-full h-30 bg-purple-300">Funciona pasando el mouse</div>
+        }
+</section>
+<section>
+    <h1 class="text-xl">Interaction immediate</h1>
+    <hr>
+    @defer (on immediate) {
+        <app-fast clase="bg-blue-300 h-30">
+            <span> On Immediate</span>
+        </app-fast>}@placeholder {
+            <div class="w-full h-30 bg-pink-100">Inmediatamente</div>
+        }
+</section>
+<section>
+    <h1 class="text-xl">Interaction Timer</h1>
+    <hr>
+    @defer (on timer(3000)) {
+        <app-fast clase="bg-blue-300 h-30">
+            <span> On Timer</span>
+        </app-fast>}@placeholder {
+            <div class="w-full h-30 bg-pink-100">Espera 3 segundos</div>
+        }
+</section>

@@ -1,0 +1,164 @@
+<!-- component -->
+
+<div class="flex items-center justify-center p-12">
+  <!-- Author: FormBold Team -->
+  <!-- Learn More: https://formbold.com -->
+  <div class="mx-auto w-full max-w-[550px]">
+    <form [formGroup]="formRopa" (ngSubmit)="saveRopa()" action="https://formbold.com/s/FORM_ID" method="POST">
+      <div class="mb-5">
+        <label
+          for="name"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+          required
+        >
+          Nombre
+        </label>
+        <input
+          type="text"
+          formControlName="name"
+          id=""
+          placeholder="Nombre"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+        @if (validaControl('name')){
+          <small class="p-1 text-red-500">Este campo es requerido</small>
+         }
+      </div>
+      <div class="mb-5">
+        <label
+          for=""
+          class="mb-3 block text-base font-medium text-[#07074D]"
+          required
+>
+          Descripcion
+        </label>
+        <textarea
+          type="text"
+          formControlName="description"
+          id=""
+          placeholder="Hecho con algodon"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        ></textarea>
+        @if (validaControl('description')){
+          <small class="p-1 text-red-500">Este campo es requerido</small>
+         }@else {
+          @if(validaDescriptionMin('description')){
+            <small class="p-1 text-red-500">Este campo debe tener minimo 20 caracteres</small>
+          }
+          @if(validaDescriptionMax('description')){
+            <small class="p-1 text-red-500">Este campo debe tener maximo 50 caracteres</small>
+          }
+         }
+      </div>
+      <div class="mb-5">
+        <label
+          for=""
+          class="mb-3 block text-base font-medium text-[#07074D]"
+          required
+        >
+          Precio
+        </label>
+        <input
+          type="number"
+          formControlName="price"
+          id=""
+          placeholder=""
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+        @if (validaControl('price')){
+          <small class="p-1 text-red-500">Este campo es requerido</small>
+         }@else {
+          @if (validaPriceMax('price')){
+            <small class="p-1 text-red-500">El precio no puede ser mayor a 5000</small>
+          }
+          @if (validaPriceMin('price')){
+            <small class="p-1 text-red-500">El precio no puede ser menor a 1</small>
+          }
+         }
+
+
+         <!--  @if ( this.formRopa.get('price')?.value > 5000) {
+          <small class="p-1 text-red-500">El precio no puede ser mayor a 5000</small>
+        }@else if ( this.formRopa.get('price')?.value <0){
+          <small class="p-1 text-red-500">El precio no puede ser negativo</small>
+        } -->
+
+      </div>
+      <div class="mb-5">
+        <label
+          for=""
+          class="mb-3 block text-base font-medium text-[#07074D]"
+          required
+        >
+          Stock
+        </label>
+        <input
+          type="number"
+          formControlName="stock"
+          id=""
+          placeholder=""
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+        />
+        @if (validaControl('stock')){
+          <small class="p-1 text-red-500">Este campo es requerido</small>
+         }@else {
+          @if (validaStockMax('stock')){
+            <small class="p-1 text-red-500">El stock no puede ser mayor a 500</small>
+          }
+          @if (validaStockMin('stock')){
+            <small class="p-1 text-red-500">El stock no puede ser negativo</small>
+          }
+         }
+
+      </div>
+      <div class="mb-5">
+        <label
+          for=""
+          class="mb-3 block text-base font-medium text-[#07074D]"
+          required>
+          Marca
+        </label>
+        
+       <select formControlName="brand">
+        @for (marca of marca;track marca){
+          <option [value]="marca">{{marca}}</option>
+        }>
+       </select>
+        @if (validaControl('brand')){
+          <small class="p-1 text-red-500">Este campo es requerido</small>
+         }
+      </div>
+
+      <div class="mb-5">
+        <label
+        for=""
+        class="mb-3 block text-base font-medium text-[#07074D]"
+        required
+      >
+        Clasificacion
+      </label>
+
+      <select
+      formControlName="classification">
+      @for (cat of clasificacion;track cat){
+        <option [value]="cat">{{cat}}</option>
+      }>
+    </select>
+    @if (validaControl('classification')){
+      <small class="p-1 text-red-500">Este campo es requerido</small>
+     }
+      </div>
+
+      <br>
+      <div>
+        <button
+        type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+        focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600
+         dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Enviar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

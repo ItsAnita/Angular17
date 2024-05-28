@@ -1,0 +1,57 @@
+
+
+<form [formGroup]="formPlaylist"  class="w-full max-w-sm">
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-1/3">
+      <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        Nombre
+      </label>
+    </div>
+    <div class="md:w-2/3">
+      <input formControlName="name" type="text" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="name">
+      @if(isValidControl('name')){
+        <small class="text-red-500">{{getFieldError('name')}}</small>
+      }
+
+    </div>
+  </div>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-1/3">
+      <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="">
+        Cancion
+      </label>
+    </div>
+    <div class="md:w-2/3">
+      <input [formControl]="newSong" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-password" type="text" >
+
+    </div>
+  </div>
+
+  <div class="md:flex md:items-center">
+    <div class="md:w-1/3"></div>
+    <div class="md:w-2/3">
+      <button (click)="addSong()" class="shadow bg-green-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
+        Agregar cancion
+      </button>
+
+    </div>
+  </div>
+  <br>
+
+ <h1>Lista de canciones</h1>
+    <hr>
+    <div formArrayName="songs">
+    @for (item of favoriteSongs.controls;track item.value; let i=$index){
+      <div class="p-3">
+        <input [formControlName]="i" class="w-3/4 me-1 border-2 p-2 rounded" type="text">
+        <button (click)="onDeleteSong(i)" class="w-1/5 mt-3 bg-red-200 rounded-md shadow-md p-2 hover:bg-red-400">Eliminar</button>
+
+        @if(isValidInArray(favoriteSongs, i)){
+          <small class="text-red-500">El campo es requerido</small>
+        }</div>
+      }
+    </div>
+
+
+
+</form>
